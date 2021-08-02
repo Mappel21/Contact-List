@@ -1,9 +1,13 @@
 import React {useState, useContext} from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 const{actions} = useContext(Context);
+const[name, setName]= useState("");
+const[email, setEmail]= useState("");
+const[phone, setPhone]= useState("");
+const[address, setAddress]= useState("");
 
 export const AddContact = () => {
 	return (
