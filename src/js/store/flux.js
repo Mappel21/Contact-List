@@ -6,7 +6,7 @@ const getState = ({ getStore, setStore }) => {
 		},
 		actions: {
 			loadContact() {
-				fetch(url + "agenda/downtown_xii")
+				fetch(url)
 					.then(response => response.json())
 					.then(result => {
 							setStore({
@@ -25,18 +25,18 @@ const getState = ({ getStore, setStore }) => {
 						phone: phone,
 						address: address,
 						email: email,
-						agenda_slug: "downtown_xii"
+						agenda_slug: "mappel21"
 					})
 				}).then(()=>{
-					fetch (url + "agenda/downtown_xii")
+					fetch (url + "agenda/mappel21")
 					.then(response=> response.json())
 					.then(result => {
-						console.log("result", result),
 						setStore({
 							contacts: result
 						});
-					}) .catch(e=> console.error(e))
-				}),
+					}) .catch(e=> console.error(e));
+				});
+			},
 
 			editContact(id, name, phone, email, address) {
 					fetch(url + id, {
@@ -47,20 +47,33 @@ const getState = ({ getStore, setStore }) => {
 						phone: phone,
 						address: address,
 						email: email,
-						agenda_slug: "downtown_xii"
+						agenda_slug: "mappel21"
 					})
 				}).then(()=>{
-					fetch (url + "agenda/downtown_xii")
-					.then(Response=> Response.json())
+					fetch (url)
+					.then(response=> response.json())
 					.then(result => {
-						console.log("result", result),
 						setStore({
 							contacts: result
 						});
-					}) .catch(e=> console.error(e))
+					}) .catch(e=> console.error(e));
+					});
+				},
+
+				deleteContact(id) {
+					fetch(url + id, {
+						method: "DELETE"
+					}).then(() => {
+						fetch(url + "agenda/mappel21")
+							.then(response => response.json())
+							.then(result => {
+								setStore({
+									contacts: result
+								});
+							})
+							.catch(e => console.error(e));
 					});
 				}
-
 		}
 	};
 };
