@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export class Single extends React.Component {
-	render() {
+export const Single = props => {
+	const { store, actions } = useContext(Context);
+	const params = useParams();
 		return (
 			<div className="jumbotron">
-				<Context.Consumer>
+				{/* <Context.Consumer>
 					{({ store }) => {
-						return (
+						return ( */}
 							<h1 className="display-4">
 								This will show the demo element: {store.demo[this.props.match.params.theid].title}
 							</h1>
-						);
+						{/* );
 					}}
-				</Context.Consumer>
+				</Context.Consumer> */}
 
 				<hr className="my-4" />
 
@@ -26,8 +27,7 @@ export class Single extends React.Component {
 				</Link>
 			</div>
 		);
-	}
-}
+};
 
 Single.propTypes = {
 	match: PropTypes.object

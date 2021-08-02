@@ -1,4 +1,4 @@
-const url = "https://assets.breatheco.de/apis/fake/contact/agenda/mappel21";
+const url = "https://assets.breatheco.de/apis/fake/contact/";
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
@@ -6,14 +6,14 @@ const getState = ({ getStore, setStore }) => {
 		},
 		actions: {
 			loadContact() {
-				fetch(url)
+				fetch(url + "agenda/mappel21")
 					.then(response => response.json())
 					.then(result => {
 						setStore({
 							contacts: result
 						});
 					})
-					.catch(e => console.error);
+					.catch(e => console.error(e));
 			},
 
 			addContact(name, phone, email, address) {
@@ -28,20 +28,21 @@ const getState = ({ getStore, setStore }) => {
 						agenda_slug: "mappel21"
 					})
 				}).then(() => {
-					fetch(url)
+					fetch(url + "agenda/mappel21")
 						.then(response => response.json())
 						.then(result => {
 							setStore({
 								contacts: result
 							});
-						}).catch(e => console.error(e));
+						})
+						.catch(e => console.error(e));
 				});
 			},
 
 			editContact(id, name, phone, email, address) {
 				fetch(url + id, {
 					method: "put",
-					headers: { "content-type": "application/json" },
+					headers: { "Content-type": "application/json" },
 					body: JSON.stringify({
 						full_name: name,
 						phone: phone,
@@ -50,13 +51,14 @@ const getState = ({ getStore, setStore }) => {
 						agenda_slug: "mappel21"
 					})
 				}).then(() => {
-					fetch(url)
+					fetch(url + "agenda/mappel21")
 						.then(response => response.json())
 						.then(result => {
 							setStore({
 								contacts: result
 							});
-						}).catch(e => console.error(e));
+						})
+						.catch(e => console.error(e));
 				});
 			},
 
@@ -64,7 +66,7 @@ const getState = ({ getStore, setStore }) => {
 				fetch(url + id, {
 					method: "DELETE"
 				}).then(() => {
-					fetch(url)
+					fetch(url + "agenda/mappel21")
 						.then(response => response.json())
 						.then(result => {
 							setStore({
