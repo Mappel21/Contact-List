@@ -9,17 +9,17 @@ const getState = ({ getStore, setStore }) => {
 				fetch(url)
 					.then(response => response.json())
 					.then(result => {
-							setStore({
-								contacts: result
-							});
-					})	
+						setStore({
+							contacts: result
+						});
+					})
 					.catch(e => console.error);
 			},
 
 			addContact(name, phone, email, address) {
 				fetch(url, {
 					method: "post",
-					headers: {"content-type":"application/json", mode: "no-cors"},
+					headers: { "content-type": "application/json", mode: "no-cors" },
 					body: JSON.stringify({
 						full_name: name,
 						phone: phone,
@@ -27,21 +27,21 @@ const getState = ({ getStore, setStore }) => {
 						email: email,
 						agenda_slug: "mappel21"
 					})
-				}).then(()=>{
-					fetch (url + "agenda/mappel21")
-					.then(response=> response.json())
-					.then(result => {
-						setStore({
-							contacts: result
-						});
-					}) .catch(e=> console.error(e));
+				}).then(() => {
+					fetch(url)
+						.then(response => response.json())
+						.then(result => {
+							setStore({
+								contacts: result
+							});
+						}).catch(e => console.error(e));
 				});
 			},
 
 			editContact(id, name, phone, email, address) {
-					fetch(url + id, {
-						method: "put",
-					headers: {"content-type":"application/json"},
+				fetch(url + id, {
+					method: "put",
+					headers: { "content-type": "application/json" },
 					body: JSON.stringify({
 						full_name: name,
 						phone: phone,
@@ -49,31 +49,31 @@ const getState = ({ getStore, setStore }) => {
 						email: email,
 						agenda_slug: "mappel21"
 					})
-				}).then(()=>{
-					fetch (url)
-					.then(response=> response.json())
-					.then(result => {
-						setStore({
-							contacts: result
-						});
-					}) .catch(e=> console.error(e));
-					});
-				},
+				}).then(() => {
+					fetch(url)
+						.then(response => response.json())
+						.then(result => {
+							setStore({
+								contacts: result
+							});
+						}).catch(e => console.error(e));
+				});
+			},
 
-				deleteContact(id) {
-					fetch(url + id, {
-						method: "DELETE"
-					}).then(() => {
-						fetch(url + "agenda/mappel21")
-							.then(response => response.json())
-							.then(result => {
-								setStore({
-									contacts: result
-								});
-							})
-							.catch(e => console.error(e));
-					});
-				}
+			deleteContact(id) {
+				fetch(url + id, {
+					method: "DELETE"
+				}).then(() => {
+					fetch(url)
+						.then(response => response.json())
+						.then(result => {
+							setStore({
+								contacts: result
+							});
+						})
+						.catch(e => console.error(e));
+				});
+			}
 		}
 	};
 };
