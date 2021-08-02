@@ -1,5 +1,9 @@
-import React from "react";
+import React {useState, useContext} from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { useContext } from "react";
+
+const{actions} = useContext(Context);
 
 export const AddContact = () => {
 	return (
