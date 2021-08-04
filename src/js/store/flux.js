@@ -55,6 +55,7 @@ const getState = ({ getStore, setStore }) => {
 					fetch(url + "agenda/mappel21")
 						.then(response => response.json())
 						.then(result => {
+							// console.log("reslut", result);
 							setStore({
 								contacts: result
 							});
@@ -70,9 +71,10 @@ const getState = ({ getStore, setStore }) => {
 					fetch(url + "agenda/mappel21")
 						.then(response => response.json())
 						.then(result => {
-							setStore({
-								contacts: result
-							});
+							console.log("result", result),
+								setStore({
+									contacts: result
+								});
 						})
 						.catch(e => console.error(e));
 				});
