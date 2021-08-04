@@ -63,7 +63,7 @@ Modal.propTypes = {
  * Define the default values for
  * your component's properties
  **/
-Modal.defaultProps = {
+Modal.propTypes = {
 	modal: PropTypes.string,
 	show: false,
 	onClose: null

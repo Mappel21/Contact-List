@@ -41,7 +41,7 @@ const getState = ({ getStore, setStore }) => {
 
 			editContact(id, name, phone, email, address) {
 				fetch(url + id, {
-					method: "put",
+					method: "PUT",
 					headers: { "Content-type": "application/json" },
 					body: JSON.stringify({
 						full_name: name,
