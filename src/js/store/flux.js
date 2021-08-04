@@ -19,7 +19,7 @@ const getState = ({ getStore, setStore }) => {
 			addContact(name, phone, email, address) {
 				fetch(url, {
 					method: "post",
-					headers: { "content-type": "application/json", mode: "no-cors" },
+					headers: { "content-type": "application/json" },
 					body: JSON.stringify({
 						full_name: name,
 						phone: phone,
@@ -31,6 +31,7 @@ const getState = ({ getStore, setStore }) => {
 					fetch(url + "agenda/mappel21")
 						.then(response => response.json())
 						.then(result => {
+							console.log("result", result);
 							setStore({
 								contacts: result
 							});
@@ -81,3 +82,5 @@ const getState = ({ getStore, setStore }) => {
 };
 
 export default getState;
+
+// mode: "no-cors"

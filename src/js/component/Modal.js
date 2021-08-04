@@ -39,7 +39,7 @@ export const Modal = props => {
 							onClick={() => props.onClose()}>
 							Oh no!
 						</button>
-						<button type="button" className="btn btn-secondary" onClick={() => actions.deleteContact(id)}>
+						<button type="button" className="btn btn-secondary" onClick={() => actions.deleteContact()}>
 							Do it!
 						</button>
 					</div>
